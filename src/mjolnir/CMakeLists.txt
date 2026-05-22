@@ -63,6 +63,7 @@ set(sources
   util.cc
   validatetransit.cc
   way_edges_processor.cc
+  osm_node_edges_processor.cc
 )
 
 set(system_includes
