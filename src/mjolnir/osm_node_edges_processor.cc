@@ -19,7 +19,7 @@ namespace {
  */
 void write_edge_osm_node(const baldr::GraphId edge_id, bool forward,
                           const std::vector<uint64_t>& osm_ids,
-                          const std::vector<midgard::PointLL> shape, std::ofstream& file) {
+                          const std::vector<midgard::PointLL>& shape, std::ofstream& file) {
 
     // output the basics: edge_id,string edge id
     file << (uint64_t)edge_id
