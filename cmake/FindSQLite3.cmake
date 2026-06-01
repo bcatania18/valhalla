@@ -102,7 +102,15 @@ IF (NOT SQLITE3_LOAD_EXTENSION)
     endif()
 ENDIF (NOT SQLITE3_LOAD_EXTENSION)
 
-add_library(SQLite3::SQLite3 INTERFACE IMPORTED)
-set_target_properties(SQLite3::SQLite3 PROPERTIES
-  INTERFACE_LINK_LIBRARIES "${SQLITE3_LIBRARIES}"
-  INTERFACE_INCLUDE_DIRECTORIES "${SQLITE3_INCLUDE_DIR}")
+if(NOT TARGET SQLite3::SQLite3)
+    add_library(SQLite3::SQLite3 INTERFACE IMPORTED)
+    set_target_properties(SQLite3::SQLite3 PROPERTIES
+      INTERFACE_LINK_LIBRARIES "${SQLITE3_LIBRARIES}"
+      INTERFACE_INCLUDE_DIRECTORIES "${SQLITE3_INCLUDE_DIR}")
+endif()
+
+# Compatibility with packages that still refer to the older/deprecated spelling.
+if(TARGET SQLite3::SQLite3 AND NOT TARGET SQLite::SQLite3)
+    add_library(SQLite::SQLite3 INTERFACE IMPORTED)
+    target_link_libraries(SQLite::SQLite3 INTERFACE SQLite3::SQLite3)
+endif()

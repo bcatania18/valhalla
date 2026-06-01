@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 project(valhalla LANGUAGES CXX C)
+add_compile_options(-Wno-error=deprecated-declarations)
 
 # ensure build-tree executables find the local libvalhalla.so
 # use RPATH (not RUNPATH) so it takes precedence over system ldconfig cache
@@ -103,6 +104,7 @@ include(ValhallaSourceGroups)
 # We use pkg-config for (almost) all dependencies:
 # - CMake Find* modules are versioned with CMake, not the packages, see protobuf > 21.12
 # - it's more trivial to use custom installations via PKG_CONFIG_PATH env var
+find_package(ZLIB REQUIRED)
 pkg_check_modules(ZLIB REQUIRED IMPORTED_TARGET zlib)
 
 # cURL
