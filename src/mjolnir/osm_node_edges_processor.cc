@@ -11,7 +11,7 @@ namespace {
 
 /**
  * Writes one CSV line containing:
- * edge_id,string edge id,forward,osm_node_id,distance_to_next[,osm_node_id,distance_to_next,...]
+ * edge_id,string edge id,graph_file,forward,osm_node_id,distance_to_next[,osm_node_id,distance_to_next,...]
  * @param edge_id The edge GraphId to write.
  * @param forward Whether the edge is traversed in its forward direction.
  * @param osm_ids The OSM node ids associated with the edge shape.
