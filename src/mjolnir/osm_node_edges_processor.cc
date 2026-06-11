@@ -1,5 +1,6 @@
 #include "mjolnir/osm_node_edges_processor.h"
 #include "baldr/edgeinfo.h"
+#include "baldr/graphtile.h"
 
 #include <fstream>
 
@@ -24,6 +25,7 @@ void write_edge_osm_node(const baldr::GraphId edge_id, bool forward,
     // output the basics: edge_id,string edge id
     file << (uint64_t)edge_id
       << "," << edge_id
+      << "," << baldr::GraphTile::FileSuffix(edge_id)
       << "," << (uint32_t)forward;
 
     // now for each osm id, output the distance between it and the next node
